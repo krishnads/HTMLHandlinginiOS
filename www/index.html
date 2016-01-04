@@ -1,0 +1,30 @@
+<script src="iosBridge.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    
+    function onSuccess (ret)
+    {
+        if (ret)
+        {
+            document.getElementById("output").innerHTML = ret.result;
+            //document.write(ret.result);
+        }
+    }
+
+    calliOSFunction(method,args,onSuccess,
+                function(ret)
+                {
+                    if (ret)
+                        document.write("Error executing native function : <br>" + ret.message);
+                }
+                );
+                
+    </script>
+    <body>
+        <center>
+        <div id = "output"> </div>
+        <input type = "button" name = "button" value = "button" onClick="calliOSFunction('btnClickAction',['Custom burtton'],'onSuccess');">
+            <br/>
+        <input type = "button" name = "button" value = "Hello btn" onClick="calliOSFunction('sayHello',['Ram'],'onSuccess');">
+        </center>
+    </body>
